@@ -31,6 +31,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "mongoose": "^5.10.12",
+    "mongoose-slug-generator": "^1.0.4",
     "node-sass": "^5.0.0"
   },
   "devDependencies": {

@@ -2,13 +2,13 @@ const Course = require('../models/course');
 const { handleArray } = require('../../util/mongoose');
 class MeController {
     storedCourses(req, res, next) {
-        Course.find({})
-            .then((courses) =>
+        Promise.all([Course.find({}), Course.countDocumentsDeleted()]).then(
+            ([courses, deleteCount]) =>
                 res.render('me/stored-course', {
                     course: handleArray(courses),
+                    deleteCount,
                 }),
-            )
-            .catch(next);
+        );
     }
     trashCourses(req, res, next) {
         Course.findDeleted({})

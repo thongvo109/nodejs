@@ -38,7 +38,7 @@
                     {{this.createdAt}}
                 </td>
                 <td>
-                    <a href="" class="btn btn-link btn-restore">
+                    <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">
                         Khôi phục
                     </a>
                 </td>
@@ -91,10 +91,12 @@
 </div>
 {{! delete hide form }}
 <form method="POST" name="delete-form"></form>
+<form method="POST" name="restore-form"></form>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var id;
         var deleteForm = document.forms['delete-form'];
+        var restoreForm = document.forms['restore-form'];
         var btnDelete = document.getElementById('btn-delete');
         var btnRestore = $('.btn-restore');
         $('#delete-modal').on('show.bs.modal', function (event) {
@@ -104,14 +106,15 @@
         });
 
         btnDelete.onclick = function () {
-            deleteForm.action = '/courses/' + id + '?_method=DELETE';
+            deleteForm.action = '/courses/' + id + '/force?_method=DELETE';
             deleteForm.submit();
         }
         btnRestore.click(
             function (e) {
                 e.preventDefault();
-
-                console.log('eeeee');
+                var id = $(this).data('id');
+                restoreForm.action = '/courses/' + id + '/restore?_method=PATCH';
+                restoreForm.submit();
             }
         )
     })

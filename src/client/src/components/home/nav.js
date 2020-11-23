@@ -5,20 +5,34 @@ import {
     Button,
     FormControl,
     Nav,
+    NavItem,
     Form,
+    Container,
 } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
+
 const NavbarHome = () => {
     return (
-        <Navbar bg="light">
-            <Navbar.Brand href="#home">Thong Blog's</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
+        <Navbar bg="primary" variant="dark">
+            <Container>
+                <Navbar.Brand as={NavLink} to="/">
+                    Thong Blog's
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link as={NavLink} to="/" exact>
+                            Home
+                        </Nav.Link>
+                        <Nav.Link as={NavLink} to="/register">
+                            Register
+                        </Nav.Link>
+                        <Nav.Link as={NavLink} to="/login">
+                            Login
+                        </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
         </Navbar>
     );
 };

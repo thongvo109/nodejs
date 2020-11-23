@@ -36,53 +36,57 @@ const Register = (props) => {
     };
 
     return (
-        <div className="form mt-5">
-            <h4 className="text muted text-center mb-5">Create an account</h4>
-            <div className="card p-5 shadow">
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            className="form-control"
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="name">Password</label>
-                        <input
-                            className="form-control"
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    {error ? <p className="text-danger">{error}</p> : null}
-                    <div className="text-center">
-                        <button
-                            className="btn btn-primary"
-                            onClick={handleSubmit}
-                        >
-                            Register
-                        </button>
-                    </div>
-                    <p className="mt-3 text-center">
-                        Already a user? <Link to="/login"></Link>
-                    </p>
-                </form>
+        <div class="container sm">
+            <div className="form mt-5 ">
+                <h4 className="text muted text-center mb-5">
+                    Create an account
+                </h4>
+                <div className="card p-5 shadow">
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                name="name"
+                                value={name}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                className="form-control"
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="name">Password</label>
+                            <input
+                                className="form-control"
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        {error ? <p className="text-danger">{error}</p> : null}
+                        <div className="text-center">
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleSubmit}
+                            >
+                                Register
+                            </button>
+                        </div>
+                        <p className="mt-3 text-center">
+                            Already a user? <Link to="/login">Login</Link>
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
     );

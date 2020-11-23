@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import NavbarHome from './components/home/nav';
+import Store from './components/store';
 const Home = (props) => {
     const [user, setUser] = useState(null);
 
@@ -27,7 +28,7 @@ const Home = (props) => {
     if (!localStorage.getItem('token')) {
         return (
             <Container fluid>
-                <NavbarHome></NavbarHome>
+                <Store></Store>
             </Container>
         );
     } else {
@@ -35,7 +36,6 @@ const Home = (props) => {
             <div className="m-5">
                 <div className="jumbotron">
                     <div className="lead">Welcome {user && user.name}</div>
-
                     <button className="btn btn-danger" onClick={logout}>
                         Logout
                     </button>
@@ -45,17 +45,3 @@ const Home = (props) => {
     }
 };
 export default Home;
-// user == null ? (
-//     <div className="m-5">
-//       <div className="jumbotron">
-//         <div className="lead">Welcome {user && user.name}</div>
-//         <button className="btn btn-danger" onClick={logout}>
-//           Logout
-//         </button>
-//       </div>
-//     </div>
-//   ) : (
-//     <Container fluid>
-//       <NavbarHome></NavbarHome>
-//     </Container>
-//   );

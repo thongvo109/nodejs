@@ -11,6 +11,13 @@ class SiteController {
             })
             .catch(next);
     }
+    indexJson(req, res, next) {
+        Course.find({})
+            .then((item) => {
+                res.json({ item });
+            })
+            .catch(next);
+    }
     // [GET] /search
     search(req, res) {
         res.render('search');

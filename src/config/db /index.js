@@ -5,6 +5,7 @@ async function connect() {
             useCreateIndex: true,
             useUnifiedTopology: true,
             useNewUrlParser: true,
+            useFindAndModify: false,
         });
         console.log('Ok');
     } catch (error) {

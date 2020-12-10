@@ -1,29 +1,62 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const isEmpty = require('lodash.isempty');
+const Check = require('../../util/validate');
 
 class UserController {
     async register(req, res) {
         const { name, email, password } = req.body;
+
         try {
-            let user = await User.findOne({ email });
-            if (user) {
-                return res.status(400).json({ error: 'User already exites' });
-            }
-            const handed_password = await bcrypt.hash(password, 10);
-            user = new User({ name, email, password: handed_password });
-            await user.save();
-            return res
-                .status(200)
-                .json({
-                    code: 200,
-                    message: 'user created successfully',
-                    user: user,
+            if (isEmpty(req.body)) {
+                return res.status(400).json({
+                    error: {
+                        email: 'error_email_require',
+                        password: 'error_password_requie',
+                    },
                 });
+            } else if (isEmpty(req.body.email)) {
+                return res.status(400).json({
+                    error: {
+                        email: 'error_email_require',
+                    },
+                });
+            } else if (isEmpty(req.body.password)) {
+                return res.status(400).json({
+                    error: {
+                        password: 'error_password_requie',
+                    },
+                });
+            } else {
+                if (Check.validateEmail(email)) {
+                    let user = await User.findOne({ email });
+                    if (user) {
+                        return res
+                            .status(400)
+                            .json({ error: 'User already exites' });
+                    }
+                    const handed_password = await bcrypt.hash(password, 10);
+                    user = new User({ name, email, password: handed_password });
+                    await user.save();
+                    return res.status(200).json({
+                        code: 200,
+                        message: 'user created successfully',
+                        data: user,
+                    });
+                } else {
+                    return res.status(400).json({
+                        error: {
+                            email: 'Email not match format',
+                        },
+                    });
+                }
+            }
         } catch (err) {
             console.log(err.message);
         }
     }
+
     async login(req, res) {
         const { email, password } = req.body;
         try {

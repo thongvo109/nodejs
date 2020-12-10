@@ -7,7 +7,6 @@ exports.requireLogin = (req, res, next) => {
 
             const decode = jwt.verify(token, process.env.JWT_KEY);
             req.user = decode;
-            console.log(+' tim cai nahy');
             next();
         } else {
             return res.status(400).json({ messeage: 'Authorization invalid' });

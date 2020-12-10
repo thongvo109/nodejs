@@ -2,12 +2,13 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const path = require('path');
-const port = 3000;
+const port = 4000;
 const route = require('./routes');
 const db = require('./config/db ');
 const methodOverride = require('method-override');
 require('dotenv').config();
 const cors = require('cors');
+
 db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));

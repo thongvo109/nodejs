@@ -7,7 +7,7 @@
     "beautiful": "lint-staged",
     "start": "nodemon src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
-    "dev": "concurrently \"npm run start\" \"npm start --prefix src/client\" ",
+    "dev": "concurrently \"npm run start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -50,3 +50,6 @@
     "prettier": "^2.1.2"
   }
 }
+
+
+

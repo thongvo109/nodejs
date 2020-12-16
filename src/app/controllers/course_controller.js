@@ -8,7 +8,7 @@ class Coures {
         const item = new Course(model);
         item.save()
             .then(() => res.redirect(`/`))
-            .catch((error) => {});
+            .catch(next);
     }
     create(req, res) {
         res.render('courses/create');
